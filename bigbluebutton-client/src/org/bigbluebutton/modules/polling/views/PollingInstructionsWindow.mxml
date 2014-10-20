@@ -20,7 +20,7 @@ Notes.mxml is the main view of the SharedNotes application
 -->
 <MDIWindow xmlns="flexlib.mdi.containers.*"
         xmlns:mx="http://www.adobe.com/2006/mxml"
-		width="510" height="600"
+		width="480" height="560"
 		xmlns:mate="http://mate.asfusion.com/"
 		implements="org.bigbluebutton.common.IBbbModuleWindow"
 		initialize="init()"
@@ -552,13 +552,14 @@ Notes.mxml is the main view of the SharedNotes application
     <!-- Instructions Window with Form-->
 	    <mx:Canvas id="instrMain" width="90%" height="90%" focusEnabled="true">
         	<mx:VBox width="90%" height="90%" focusEnabled="true">
-           		<mx:Form width="100%" id="instructionsForm" paddingTop="30" paddingBottom="10" paddingLeft="30" focusEnabled="true">
+           		<mx:Form width="100%" id="instructionsForm" paddingTop="30" paddingBottom="10" paddingLeft="20" focusEnabled="true">
 					<mx:FormItem fontWeight="bold" 
 								 label="{ResourceUtil.getInstance().getString('bbb.polling.createPoll.title')}" 
 								 paddingLeft="35" 
 								 id="titleFormItem"
 								 focusEnabled="true">
 						<mx:TextInput id="pollTitle" 
+									  width="250"
 									  focusEnabled="true" 
 									  accessibilityDescription="{ResourceUtil.getInstance().getString('bbb.polling.createPoll.title')}"
 									  tabIndex="{baseIndex+4}"/>
@@ -576,8 +577,8 @@ Notes.mxml is the main view of the SharedNotes application
 								 paddingLeft="35" 
 								 paddingTop="20" >
 						<mx:TextArea id="pollQuestion" 
-									 width="200" 
-									 height="100" 
+									 width="250" 
+									 height="80" 
 									 accessibilityDescription="{ResourceUtil.getInstance().getString('bbb.polling.createPoll.question')}"
 									 tabIndex="{baseIndex+4}"/>
 						<mx:Label id="qErrMsg" 
@@ -594,8 +595,8 @@ Notes.mxml is the main view of the SharedNotes application
 								 paddingLeft="35" 
 								 paddingTop="30" >
 						<mx:TextArea id="pollAnswers" 
-									 width="200" 
-									 height="100" 
+									 width="250" 
+									 height="80" 
 									 accessibilityDescription="{ResourceUtil.getInstance().getString('bbb.polling.createPoll.answers')}"
 									 tabIndex="{baseIndex+4}"/>
 						<mx:Label id="answerHint" 
@@ -607,7 +608,7 @@ Notes.mxml is the main view of the SharedNotes application
 					</mx:FormItem>
 
 					<mx:FormItem fontWeight="bold" 
-								 paddingLeft="20" 
+								 paddingLeft="30" 
 								 paddingTop="5" >
 						<mx:Label id="aErrMsg" 
 								  text="" 
@@ -618,7 +619,7 @@ Notes.mxml is the main view of the SharedNotes application
 								  fontWeight="normal" />
 					</mx:FormItem>
 
-					<mx:FormItem paddingLeft="10" 
+					<mx:FormItem paddingLeft="30" 
 								 paddingTop="5" >
 						<mx:CheckBox id="multiple_response" 
 									 label="{ResourceUtil.getInstance().getString('bbb.polling.createPoll.moreThanOneResponse')}" 
@@ -681,19 +682,19 @@ Notes.mxml is the main view of the SharedNotes application
 
 	<!-- ###################BUTTONS##############-->
 	<!-- area where buttons are located -->
-	<mx:ControlBar>
+	<mx:ControlBar paddingLeft='40'>
 		<!-- Back Button is not visible while instructions and visible while preView -->
 		<mx:Button id="back" 
 				   label="{ResourceUtil.getInstance().getString('bbb.polling.pollPreview.modify')}" 
 				   click="{mainArea.selectedChild=instrMain} {buttons.selectedChild=instrButtons} goBack()" 
-				   width="100" 
+				   width="80" 
 				   height="30" 
 				   visible="false"
 				   tabIndex="{baseIndex+5}"/>
 		<mx:Button id="publishButton"
 				   label="{ResourceUtil.getInstance().getString('bbb.polling.pollPreview.publish')}"
 				   click="publish();"
-				   width="100"
+				   width="80"
 				   height="30"
 				   visible="false"
 				   tabIndex="{baseIndex+5}"/>
@@ -703,7 +704,7 @@ Notes.mxml is the main view of the SharedNotes application
 				<mx:Button id="next" 
 						   label="{ResourceUtil.getInstance().getString('bbb.polling.pollPreview.preview')}" 
 						   click="validateAndSubmit()" 
-						   width="100" 
+						   width="80" 
 						   height="30"
 						   tabIndex="{baseIndex+5}"/>
 			</mx:Canvas>
@@ -712,7 +713,7 @@ Notes.mxml is the main view of the SharedNotes application
 				<mx:Button id="SavePoll"
 						   label="{ResourceUtil.getInstance().getString('bbb.polling.pollPreview.save')}" 
 						   click="savePoll()" 
-						   width="100" 
+						   width="80" 
 						   height="30"
 						   tabIndex="{baseIndex+5}"/>
 			</mx:Canvas>
@@ -721,7 +722,7 @@ Notes.mxml is the main view of the SharedNotes application
 		<mx:Button id="Cancel" 
 				   label="{ResourceUtil.getInstance().getString('bbb.polling.pollPreview.cancel')}" 
 				   click="closeInstructionsWindow()" 
-				   width="100" 
+				   width="80" 
 				   height="30"
 				   tabIndex="{baseIndex+5}"/>
 	</mx:ControlBar>

@@ -372,14 +372,14 @@
 				 width="90%">
 			<mx:TextArea id="webPollURLBox" 
 						 editable="false" 
-						 text="" 
+						 text="URL" 
 						 height="25"
 						 width="95%"
 						 tabIndex="{baseIndex+4}"
 						 />         
 		</mx:HBox>
 		<mx:Text width="200"
-				 paddingTop="15" paddingBottom="10"
+				 paddingTop="5" paddingBottom="10"
 				 fontWeight="bold" textAlign="center"
 				 text="{question}"/>
 		<mx:DataGrid id="resultsGrid" 
