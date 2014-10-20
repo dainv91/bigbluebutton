@@ -138,12 +138,20 @@ public class BigBlueButtonApplication extends MultiThreadedApplicationAdapter {
     	String externalUserID = ((String) params[5]).toString();
     	String internalUserID = ((String) params[6]).toString();
     	
-    	Boolean locked = false;
+    	//Boolean locked = false;
+	//---Changed by iadd---------------
+	Boolean locked = true;
+	//---------------------------------
     	if(params.length >= 7 && ((Boolean) params[7])) {
     		locked = true;
     	}
     	
-    	Boolean muted  = false;
+
+    	//Boolean muted  = false;
+	//---Changed by iadd---------------
+        Boolean muted = true;
+        //---------------------------------
+
     	if(params.length >= 8 && ((Boolean) params[8])) {
     		muted = true;
     	}
