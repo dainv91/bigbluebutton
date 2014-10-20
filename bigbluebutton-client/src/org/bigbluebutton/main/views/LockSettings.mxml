@@ -63,10 +63,10 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 				var event:LockControlEvent = new LockControlEvent(LockControlEvent.SAVE_LOCK_SETTINGS);
 				
 				var lockSettings:LockSettingsVO = new LockSettingsVO(allowModeratorLocking.selected, 
-					!enableWebcam.selected,
-					!enableMicrophone.selected, 
-					!enablePrivateChat.selected,
-					!enablePublicChat.selected);
+					enableWebcam.selected,
+					enableMicrophone.selected, 
+					enablePrivateChat.selected,
+					enablePublicChat.selected);
 				
 				event.payload = lockSettings.toMap();
 				
@@ -85,10 +85,10 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 				var lockSettings:LockSettingsVO = conference.getLockSettings();
 				
 				allowModeratorLocking.selected = lockSettings.getAllowModeratorLocking();
-				enableWebcam.selected = !lockSettings.getDisableCam();
-				enableMicrophone.selected = !lockSettings.getDisableMic();
-				enablePrivateChat.selected = !lockSettings.getDisablePrivateChat();
-				enablePublicChat.selected = !lockSettings.getDisablePublicChat();
+				enableWebcam.selected = lockSettings.getDisableCam();
+				enableMicrophone.selected = lockSettings.getDisableMic();
+				enablePrivateChat.selected = lockSettings.getDisablePrivateChat();
+				enablePublicChat.selected = lockSettings.getDisablePublicChat();
 			}
 			
 		]]>
