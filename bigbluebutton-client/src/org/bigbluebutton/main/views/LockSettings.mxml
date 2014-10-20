@@ -85,14 +85,10 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 				var lockSettings:LockSettingsVO = conference.getLockSettings();
 				
 				allowModeratorLocking.selected = lockSettings.getAllowModeratorLocking();
-				enableWebcam.selected = 
-!lockSettings.getDisableCam();
-				enableMicrophone.selected = 
-!lockSettings.getDisableMic();
-				enablePrivateChat.selected = 
-!lockSettings.getDisablePrivateChat();
-				enablePublicChat.selected = 
-!lockSettings.getDisablePublicChat();
+				enableWebcam.selected = lockSettings.getDisableCam();
+				enableMicrophone.selected = lockSettings.getDisableMic();
+				enablePrivateChat.selected = lockSettings.getDisablePrivateChat();
+				enablePublicChat.selected = !lockSettings.getDisablePublicChat();
 			}
 			
 		]]>
