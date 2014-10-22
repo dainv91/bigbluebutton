@@ -36,6 +36,8 @@ import org.bigbluebutton.web.services.ExpiredMeetingCleanupTimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.bigbluebutton.api.libs.*;
+
 public class MeetingService {
 	private static Logger log = LoggerFactory.getLogger(MeetingService.class);
 	
@@ -301,6 +303,7 @@ public class MeetingService {
 				User user = new User(internalUserId, externalUserId, name, role);
 				m.userJoined(user);
 				log.debug("New user in meeting " + meetingId + ":" + user.getFullname());
+				saveLog(user, "joined", m);
 				return;
 			}
 			log.warn("The meeting " + meetingId + " doesn't exist");
@@ -313,6 +316,7 @@ public class MeetingService {
 				User user = m.userLeft(internalUserId);
 				if(user != null){
 					log.debug("User removed from meeting " + meetingId + ":" + user.getFullname());
+					saveLog(user, "left", m);
 					return;
 				}
 				log.warn("The participant " + internalUserId + " doesn't exist in the meeting " + meetingId);
@@ -335,6 +339,40 @@ public class MeetingService {
 				return;
 			}
 			log.warn("The meeting " + meetingId + " doesn't exist");
+		}
+
+		public void saveLog(final User user, final String action, final Meeting meeting){
+			//TODO: change url to lms server
+			String url = "http://elearning.neu.topica.vn/login/vcr/lms_vcr_integration.php?";
+			String externalUserId = user.getExternalUserId();
+			String internalUserId = user.getInternalUserId();
+			String userName = user.getFullname();
+			String role=user.getRole();
+			String meetingName = meeting.getName();
+			String internalMeetingId = meeting.getInternalId();
+			String externalMeetingId = meeting.getExternalId();
+			String c = "&";
+
+			java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String time = df.format(new java.util.Date()).toString();
+
+			String params = "externalUserId=" + externalUserId + c
+						+ "internalUserId=" + internalUserId + c
+						+ "userName=" + userName + c
+						+ "role=" + role + c
+						+ "meetingName=" + meetingName + c
+						+ "time=" + time + c
+						+ "internalMeetingId=" + internalMeetingId + c
+						+ "externalMeetingId=" + externalMeetingId + c
+						+ "action="+ action;
+			log.debug("iaddDebug: ParticipantUpdatingRoomListener: " + params);
+					
+			Curl.POST(url, params, new Curl.Listener() {
+				@Override
+				public void onResponse(String response) {
+					log.debug("iaddDebug: LogInOut:" + response);
+				}
+			});
 		}
 	}
 	
