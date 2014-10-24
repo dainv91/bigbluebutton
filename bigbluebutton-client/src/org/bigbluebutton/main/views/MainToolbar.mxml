@@ -42,7 +42,6 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 			import com.asfusion.mate.events.Dispatcher;
 			
 			import mx.core.UIComponent;
-			
 			import org.bigbluebutton.common.IBbbToolbarComponent;
 			import org.bigbluebutton.common.LogUtil;
 			import org.bigbluebutton.common.events.CloseWindowEvent;
@@ -375,8 +374,13 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 	<mx:Script>
 		<![CDATA[
+			import mx.managers.PopUpManager;
 			public function onEndMeetingClick():void{
-				navigateToURL(new URLRequest("https://www.google.com"))
+				var request:URLRequest = new URLRequest(BBB.initUserConfigManager().getLogoutUrl());
+ 				//LogUtil.debug("Logging out to: " + BBB.initUserConfigManager().getLogoutUrl());
+    				navigateToURL(request, '_self');
+   				PopUpManager.removePopUp(this);
+				//navigateToURL(new URLRequest("https://www.google.com"))
 			}
 		]]>
 	</mx:Script>
