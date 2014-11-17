@@ -13,7 +13,7 @@ task resolveDeps(dependsOn: configurations.default.buildArtifacts, type: Copy) {
 }
 
 war {
-   baseName = 'demo' 
+   baseName = 'iadd' 
    version = ''
 }
 dependencies {
