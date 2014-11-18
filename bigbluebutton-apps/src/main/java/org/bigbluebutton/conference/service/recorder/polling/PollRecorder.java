@@ -54,7 +54,13 @@ public class PollRecorder {
         public void record(Poll poll) {
             Jedis jedis = PollApplication.dbConnect();
             // Merges the poll title, room into a single string seperated by a hyphen
-			String pollKey = poll.room + "-" + poll.title;
+			/*
+			* Change on 2014-11-18 17:011 by iadd
+			* Fix all poll hava only 1 key
+			//String pollKey = poll.room + "-" + poll.title;
+			*/
+			String pollKey = "iadd_poll_only_one_key";
+			//-------------------------------------------------------------------
 			// Saves all relevant information about the poll as fields in a hash
 			jedis.hset(pollKey, "title", poll.title);
 			jedis.hset(pollKey, "question", poll.question);

@@ -60,7 +60,9 @@ public class PollApplication {
 	public boolean destroyRoom(String name) {
 		if (roomsManager.hasRoom(name))
 			roomsManager.removeRoom(name);
-		destroyPolls(name);
+		
+		//_changed_by_iadd: Do not destroy polls
+		//destroyPolls(name);
 		return true;
 	}
 			
@@ -69,7 +71,11 @@ public class PollApplication {
 		Jedis jedis = dbConnect();
 		ArrayList polls = titleList();
 		for (int i = 0; i < polls.size(); i++){
-			String pollKey = name + "-" + polls.get(i).toString();
+			//--------Changed on 2014-11-18 17:04 by iadd
+			//--------Fix all poll hava only 1 key
+			//String pollKey = name + "-" + polls.get(i).toString();
+			String pollKey = "iadd_poll_only_one_key";
+			//-------------------------------------------------------
 			Poll doomedPoll = getPoll(pollKey);
 			if (doomedPoll.publishToWeb){
 				cutOffWebPoll(pollKey);
