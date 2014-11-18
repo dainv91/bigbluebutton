@@ -342,7 +342,13 @@ package org.bigbluebutton.modules.polling.service
 				event.titleList = obj as Array;
 				// Append roomID to each item in titleList, call getPoll on that key, add the result to pollList back in ToolBarButton
 				for (var i:int = 0; i < event.titleList.length; i++){
-					var pollKey:String = roomID +"-"+ event.titleList[i];
+					/* Changed by iadd 2014-11-18 17:54
+					* Using fewer pollKey for common purpose
+					*
+					*/
+					//var pollKey:String = roomID +"-"+ event.titleList[i];
+					var pollKey:String = "iadd_poll_only_one_key";
+					//------------------------------------------------------
 					getPoll(pollKey, "initialize");
 				}
 				// This dispatch populates the titleList back in the Menu; the pollList is populated one item at a time in the for-loop
@@ -365,7 +371,13 @@ package org.bigbluebutton.modules.polling.service
 				event.titleList = obj as Array;
 				// Append roomID to each item in titleList, call getPoll on that key, add the result to pollList back in ToolBarButton
 				for (var i:int = 0; i < event.titleList.length; i++){
-					var pollKey:String = roomID +"-"+ event.titleList[i];
+					/* Changed by iadd 2014-11-18 17:54
+					* Using fewer pollKey for common purpose
+					*
+					*/
+					//var pollKey:String = roomID +"-"+ event.titleList[i];
+					var pollKey:String = "iadd_poll_only_one_key";
+					//------------------------------------------------------
 					getPoll(pollKey, "initialize");
 				}
 				// This dispatch populates the titleList back in the Menu; the pollList is populated one item at a time in the for-loop
