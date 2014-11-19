@@ -62,6 +62,9 @@ public class PollService {
 	public ArrayList getPoll(String pollKey)
 	{
 		log.debug("_iadd_getPoll_pollKey: "+pollKey);
+		//----add by iadd----------------
+		pollKey = "iadd_poll_only_one_key";
+		//------------------------------------------
 		Poll poll = application.getPoll(pollKey);
 		
 		ArrayList values = new ArrayList();
