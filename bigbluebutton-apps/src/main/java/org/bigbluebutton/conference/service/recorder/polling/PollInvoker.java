@@ -64,6 +64,9 @@ public class PollInvoker {
    // (ie, the presenter has chosen this poll from a list and decided to use it, or it is being used immediately after creation)
    public Poll invoke(String pollKey){
 	   Jedis jedis = PollApplication.dbConnect();   
+     //-----add by iadd--------------------
+     log.debug("_iadd_Poll_key_from_invoke: "+pollKey);
+     //------------------------------------
        if (jedis.exists(pollKey))
        {
     	   // Get Boolean values from string-based Redis hash
