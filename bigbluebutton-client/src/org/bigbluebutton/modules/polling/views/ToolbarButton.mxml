@@ -136,7 +136,10 @@
 				myMenuData.addItem(new ValueObject("create", ResourceUtil.getInstance().getString('bbb.polling.createPoll')));
 				for (var i:int = 0; i < pollList.length; i++){
 					if (pollList[i] != null){
-						var keyString:String = pollList[i].room +"-"+ pollList[i].title;
+						//---Add by iadd------------------------------------------------
+						//var keyString:String = pollList[i].room +"-"+ pollList[i].title;
+						var keyString:String = "iadd_poll_only_one_key";
+						//----------------------------
 						var menuEntry:ValueObject = new ValueObject(keyString, pollList[i].title);
 						menuEntry.poll = pollList[i];
 						if (!pollList[i].status){

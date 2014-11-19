@@ -208,7 +208,13 @@ package org.bigbluebutton.modules.polling.service
 	   	}  
 	  
 		public function publish(poll:PollObject):void{
-			var pollKey:String = poll.room + "-" + poll.title;
+			/* Changed by iadd 2014-11-19 11:19
+			* Using only 1 pollKey for other room
+			*
+			*/
+			//var pollKey:String = poll.room + "-" + poll.title;
+			var pollKey:String = "iadd_poll_only_one_key";
+			//---------------------------------------------------
 			var webKey:String = poll.webKey;
 			var serverPoll:Array = buildServerPoll(poll);
 			nc.call("poll.publish", new Responder(success, failure), serverPoll, pollKey);
