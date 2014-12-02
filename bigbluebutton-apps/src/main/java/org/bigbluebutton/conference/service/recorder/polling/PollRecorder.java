@@ -59,7 +59,8 @@ public class PollRecorder {
 			* Fix all poll hava only 1 key
 			//String pollKey = poll.room + "-" + poll.title;
 			*/
-			String pollKey = "iadd_poll_only_one_key";
+			//String pollKey = "iadd_poll_only_one_key";
+			String pollKey = poll.room + "-" + poll.title;
 			//-------------------------------------------------------------------
 			// Saves all relevant information about the poll as fields in a hash
 			jedis.hset(pollKey, "title", poll.title);

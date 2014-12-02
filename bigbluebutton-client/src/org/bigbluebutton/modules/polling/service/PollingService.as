@@ -111,6 +111,12 @@ package org.bigbluebutton.modules.polling.service
 	        var poll:PollObject = extractPoll(serverPoll, serverPoll[1]+"-"+serverPoll[0]);
 	        if (!UserManager.getInstance().getConference().amIModerator()){
 				var e:PollingViewWindowEvent = new PollingViewWindowEvent(PollingViewWindowEvent.OPEN);
+				//Changed by iadd 2014-11-02 17:33
+				/* Edit polling when publish
+				* not call to server
+				*/
+				poll.title = "iadddddd";
+				//----------------------------------------
 			    e.poll = poll;
 		        dispatcher.dispatchEvent(e);
 			}
@@ -212,8 +218,8 @@ package org.bigbluebutton.modules.polling.service
 			* Using only 1 pollKey for other room
 			*
 			*/
-			//var pollKey:String = poll.room + "-" + poll.title;
-			var pollKey:String = "iadd_poll_only_one_key";
+			var pollKey:String = poll.room + "-" + poll.title;
+			//var pollKey:String = "iadd_poll_only_one_key";
 			//---------------------------------------------------
 			var webKey:String = poll.webKey;
 			var serverPoll:Array = buildServerPoll(poll);
@@ -352,8 +358,8 @@ package org.bigbluebutton.modules.polling.service
 					* Using fewer pollKey for common purpose
 					*
 					*/
-					//var pollKey:String = roomID +"-"+ event.titleList[i];
-					var pollKey:String = "iadd_poll_only_one_key";
+					var pollKey:String = roomID +"-"+ event.titleList[i];
+					//var pollKey:String = "iadd_poll_only_one_key";
 					//------------------------------------------------------
 					getPoll(pollKey, "initialize");
 				}
@@ -381,8 +387,8 @@ package org.bigbluebutton.modules.polling.service
 					* Using fewer pollKey for common purpose
 					*
 					*/
-					//var pollKey:String = roomID +"-"+ event.titleList[i];
-					var pollKey:String = "iadd_poll_only_one_key";
+					var pollKey:String = roomID +"-"+ event.titleList[i];
+					//var pollKey:String = "iadd_poll_only_one_key";
 					//------------------------------------------------------
 					getPoll(pollKey, "initialize");
 				}
