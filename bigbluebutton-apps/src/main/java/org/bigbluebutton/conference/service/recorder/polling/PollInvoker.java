@@ -133,6 +133,7 @@ public class PollInvoker {
        for (String s : jedis.keys(roomName+"*"))
        {
     	   pollTitleList.add(jedis.hget(s, "title"));
+         log.debug("iadd_titleList_"+jedis.hget(s, "title"));
        }
 	   return pollTitleList;
    }
