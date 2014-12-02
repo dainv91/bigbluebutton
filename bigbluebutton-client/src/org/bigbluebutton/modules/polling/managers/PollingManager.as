@@ -24,15 +24,7 @@ package org.bigbluebutton.modules.polling.managers
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 
-<<<<<<< HEAD
 	import org.bigbluebutton.modules.polling.model.PollObject;
-=======
-<<<<<<< HEAD
-	import org.bigbluebutton.modules.polling.model.PollObject;
-=======
-	import org.bigbluebutton.modules.polling.model;
->>>>>>> 80959db9bdea24e5166380e64fc2e31fa5124d27
->>>>>>> 938d4e903e69d237c09e7d91f9ff5a0c40341e67
 			
 	public class PollingManager
 	{	
