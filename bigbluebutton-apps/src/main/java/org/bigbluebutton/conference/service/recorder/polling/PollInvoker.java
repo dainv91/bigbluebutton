@@ -65,7 +65,7 @@ public class PollInvoker {
    public Poll invoke(String pollKey){
 	   Jedis jedis = PollApplication.dbConnect();   
      //-----add by iadd--------------------
-     log.debug("_iadd_Poll_key_from_invoke: "+pollKey);
+     log.debug("2_iadd_Poll_key_from_invoke: "+pollKey);
      //------------------------------------
        if (jedis.exists(pollKey))
        {
@@ -124,6 +124,7 @@ public class PollInvoker {
      * Replace roomName by one key
      *String roomName = Red5.getConnectionLocal().getScope().getName();
      */
+     log.debug("iadd_invoker_titleList_roomName_"+Red5.getConnectionLocal().getScope().getName());
      String roomName = "iadd_poll_only_one_key";
      //----------------------------------------------------------------
 	   ArrayList <String> pollTitleList = new ArrayList <String>(); 

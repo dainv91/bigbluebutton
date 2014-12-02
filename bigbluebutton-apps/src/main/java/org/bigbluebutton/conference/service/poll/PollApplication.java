@@ -62,6 +62,7 @@ public class PollApplication {
 			roomsManager.removeRoom(name);
 		
 		//_changed_by_iadd: Do not destroy polls
+		log.debug("iadd_name_when_destroy_room_"+name);
 		//destroyPolls(name);
 		return true;
 	}
@@ -73,8 +74,8 @@ public class PollApplication {
 		for (int i = 0; i < polls.size(); i++){
 			//--------Changed on 2014-11-18 17:04 by iadd
 			//--------Fix all poll hava only 1 key
-			//String pollKey = name + "-" + polls.get(i).toString();
-			String pollKey = "iadd_poll_only_one_key";
+			String pollKey = name + "-" + polls.get(i).toString();
+			//String pollKey = "iadd_poll_only_one_key";
 			//-------------------------------------------------------
 			Poll doomedPoll = getPoll(pollKey);
 			if (doomedPoll.publishToWeb){
