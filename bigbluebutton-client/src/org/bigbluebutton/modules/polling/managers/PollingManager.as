@@ -24,7 +24,11 @@ package org.bigbluebutton.modules.polling.managers
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 
+<<<<<<< HEAD
 	import org.bigbluebutton.modules.polling.model.PollObject;
+=======
+	import org.bigbluebutton.modules.polling.model;
+>>>>>>> 80959db9bdea24e5166380e64fc2e31fa5124d27
 			
 	public class PollingManager
 	{	
@@ -129,7 +133,6 @@ package org.bigbluebutton.modules.polling.managers
 
 			// Changed by iadd 2014-12-02 18:15
 			/* Add new poll using common key
-			*
 			*/
 			var obj:PollObject = new PollObject();
 			//-----Change here to change pollKey
