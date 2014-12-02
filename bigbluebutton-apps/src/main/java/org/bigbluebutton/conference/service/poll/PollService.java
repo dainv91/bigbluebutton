@@ -46,6 +46,7 @@ public class PollService {
 	    String pollTime = DateFormatUtils.formatUTC(System.currentTimeMillis(), "MM/dd/yy HH:mm");
 	    clientSidePoll.set(6, pollTime);
 	    poll = new Poll(clientSidePoll);
+	    log.debug("iadd_save_poll_0:"+clientSidePoll[0] + "_1:"+ clientSidePoll[1]);
 	    application.savePoll(poll);
 	}
 	
