@@ -129,7 +129,6 @@ package org.bigbluebutton.modules.polling.managers
 
 			// Changed by iadd 2014-12-02 18:15
 			/* Add new poll using common key
-			*
 			*/
 			var obj:PollObject = new PollObject();
 			//-----Change here to change pollKey
