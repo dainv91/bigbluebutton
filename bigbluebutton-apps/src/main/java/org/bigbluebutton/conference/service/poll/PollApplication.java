@@ -140,7 +140,7 @@ public class PollApplication {
 
 		//-------add by iadd----------------
 		log.debug("vote_pollKey: " + pollKey);
-		pollKey = "iadd_poll_only_one_key";
+		//pollKey = "iadd_poll_only_one_key";
 		//----------------------------------
 	    Poll poll = getPoll(pollKey);
 	    recorder.vote(pollKey, poll, answerIDs, webVote);

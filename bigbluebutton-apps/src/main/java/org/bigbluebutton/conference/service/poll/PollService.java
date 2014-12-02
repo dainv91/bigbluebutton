@@ -63,7 +63,7 @@ public class PollService {
 	{
 		log.debug("1_iadd_getPoll_pollKey: "+pollKey);
 		//----add by iadd----------------
-		pollKey = "iadd_poll_only_one_key";
+		//pollKey = "iadd_poll_only_one_key";
 		//------------------------------------------
 		Poll poll = application.getPoll(pollKey);
 		
