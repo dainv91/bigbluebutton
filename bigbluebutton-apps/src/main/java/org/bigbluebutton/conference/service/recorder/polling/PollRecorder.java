@@ -60,6 +60,8 @@ public class PollRecorder {
 			//String pollKey = poll.room + "-" + poll.title;
 			*/
 			//String pollKey = "iadd_poll_only_one_key";
+			log.debug("iadd_poll_recorder_poll.room_"+poll.room);
+			
 			String pollKey = poll.room + "-" + poll.title;
 			//-------------------------------------------------------------------
 			// Saves all relevant information about the poll as fields in a hash
