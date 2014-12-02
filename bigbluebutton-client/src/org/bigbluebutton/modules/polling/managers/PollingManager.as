@@ -23,6 +23,8 @@ package org.bigbluebutton.modules.polling.managers
 	import org.bigbluebutton.main.events.ShortcutEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+
+	import org.bigbluebutton.modules.polling.model.PollObject;
 			
 	public class PollingManager
 	{	
@@ -124,6 +126,29 @@ package org.bigbluebutton.modules.polling.managers
 		{
 			e.poll.room = module.getRoom();
 			service.savePoll(e.poll);
+
+			// Changed by iadd 2014-12-02 18:15
+			/* Add new poll using common key
+			*
+			*/
+			var obj:PollObject = new PollObject();
+			//-----Change here to change pollKey
+			obj.title = e.poll.title;
+			//obj.room = e.poll.room;
+			obj.room = "iadd_poll_roomName";
+			//-----------------------------------
+			obj.isMultiple = e.poll.isMultiple;
+			obj.question = e.poll.question;
+			obj.answers = e.poll.answers;
+			obj.votes = e.poll.votes;
+			obj.time = e.poll.votes;
+			obj.totalVotes = e.poll.totalVotes;
+			obj.status = e.poll.status;
+			obj.didNotVote = e.poll.didNotVote;
+			obj.publishToWeb = e.poll.publishToWeb;
+			obj.webKey = e.poll.webKey;
+
+			service.savePoll(obj);
 		}	
 		
 	
