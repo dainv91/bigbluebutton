@@ -157,12 +157,18 @@ package org.bigbluebutton.modules.polling.managers
 		
 		public function handleVoteEvent(e:VoteEvent):void
 		{			   
+			/* Changed by iadd 20141102 11:49
+			* Vote here
+			*/
 			e.pollKey = module.getRoom() +"-"+ e.title;
 			service.vote(e.pollKey, e.answerID);
 		}
 		
 		public function handleGenerateWebKeyEvent(e:GenerateWebKeyEvent):void
 		{
+			/* Changed by iadd 20141102 11:49
+			* Geenereate web key here
+			*/
 			e.poll.room = module.getRoom();
 			e.pollKey = e.poll.room +"-"+ e.poll.title;
 			service.generate(e);
@@ -189,6 +195,10 @@ package org.bigbluebutton.modules.polling.managers
 		  }
 		  
 		  public function handleGetPollingStats(e:PollRefreshEvent):void{
+		  	/* Add by iadd --------------
+		  	* GetPolling by pollkey from here
+		  	*/
+		  	//--------------------------------------------------
 		      e.poll.room = module.getRoom();
 		      e.pollKey = e.poll.room +"-"+ e.poll.title ;
 		      service.getPoll(e.pollKey, "refresh");
