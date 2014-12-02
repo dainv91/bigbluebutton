@@ -120,6 +120,9 @@ public class PollApplication {
 	
 	public void savePoll(Poll poll) {
         PollRecorder pollRecorder = new PollRecorder();
+        // Changed by iadd
+        log.debug("iadd_debug_poll_when_save_from_client_poll.room"+poll.room);
+        //----------------------------
         pollRecorder.record(poll);
 	}
 	

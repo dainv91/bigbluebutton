@@ -120,7 +120,12 @@ public class PollInvoker {
    public ArrayList <String> titleList()
    { 
 	   Jedis jedis = PollApplication.dbConnect();
-       String roomName = Red5.getConnectionLocal().getScope().getName();
+     /*Changed by iadd 20141202 09:32
+     * Replace roomName by one key
+     *String roomName = Red5.getConnectionLocal().getScope().getName();
+     */
+     String roomName = "iadd_poll_only_one_key";
+     //----------------------------------------------------------------
 	   ArrayList <String> pollTitleList = new ArrayList <String>(); 
        for (String s : jedis.keys(roomName+"*"))
        {
