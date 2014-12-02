@@ -125,8 +125,9 @@ public class PollInvoker {
      *String roomName = Red5.getConnectionLocal().getScope().getName();
      */
      log.debug("iadd_invoker_titleList_roomName_"+Red5.getConnectionLocal().getScope().getName());
-     //String roomName = "iadd_poll_only_one_key";
-     String roomName = Red5.getConnectionLocal().getScope().getName();
+     // Fix roomName for purpose get same title list in another room
+     String roomName = "iadd_poll_roomName";
+     //String roomName = Red5.getConnectionLocal().getScope().getName();
      //----------------------------------------------------------------
 	   ArrayList <String> pollTitleList = new ArrayList <String>(); 
        for (String s : jedis.keys(roomName+"*"))
