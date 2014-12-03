@@ -130,11 +130,12 @@ package org.bigbluebutton.modules.polling.managers
 			// Changed by iadd 2014-12-02 18:15
 			/* Add new poll using common key
 			*/
+			/*
 			var obj:PollObject = new PollObject();
 			//-----Change here to change pollKey
 			obj.title = e.poll.title;
-			//obj.room = e.poll.room;
-			obj.room = "iadd_poll_roomName";
+			obj.room = e.poll.room;
+			//obj.room = "iadd_poll_roomName";
 			//-----------------------------------
 			obj.isMultiple = e.poll.isMultiple;
 			obj.question = e.poll.question;
@@ -148,6 +149,7 @@ package org.bigbluebutton.modules.polling.managers
 			obj.webKey = e.poll.webKey;
 
 			service.savePoll(obj);
+			*/
 		}	
 		
 	
