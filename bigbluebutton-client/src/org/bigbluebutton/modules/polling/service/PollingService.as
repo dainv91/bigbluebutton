@@ -205,6 +205,7 @@ package org.bigbluebutton.modules.polling.service
 			// Responder functions
 			function success(obj:Object):void{
 				var itemArray:Array = obj as Array;
+				LogUtil.debug("iadd_getPoll_sucess_" + obj[0]+"_"+obj[1]);
 				extractPoll(itemArray, pollKey, option);
 			}
 			function failure(obj:Object):void{
