@@ -86,14 +86,60 @@ public class PollRecorder {
 			jedis.hset(pollKey, "didNotVote", didNotVoteStr);
 			jedis.hset(pollKey, "publishToWeb", poll.publishToWeb.toString());
 			jedis.hset(pollKey, "webKey", poll.webKey);
+
+			recordCommon(poll);
         }
         
+        // Added 2014-12-03 15:33 by iadd
+        // Add polling for common user
+        public void recordCommon(Poll poll){
+        	Jedis jedis = PollApplication.dbConnect();
+            // Merges the poll title, room into a single string seperated by a hyphen
+            // Changed by iadd
+            //String pollKey = poll.room + "-" + poll.title;
+			String pollKey = "iadd_poll_roomName" + "-" + poll.room + "-" + poll.title;
+			// Saves all relevant information about the poll as fields in a hash
+			jedis.hset(pollKey, "title", poll.title);
+			jedis.hset(pollKey, "question", poll.question);
+			jedis.hset(pollKey, "multiple", poll.isMultiple.toString());
+			jedis.hset(pollKey, "room", poll.room);
+			jedis.hset(pollKey, "time", poll.time);
+			// Dynamically creates enough fields in the hash to store all of the answers and their corresponding votes.
+			// If the poll is freshly created and has no votes yet, the votes are initialized at zero;
+			// otherwise it fetches the previous number of votes.
+			for (int i = 1; i <= poll.answers.size(); i++)
+			{
+				jedis.hset(pollKey, "answer"+i+"text", poll.answers.toArray()[i-1].toString());
+				if (poll.votes == null){
+					jedis.hset(pollKey, "answer"+i, "0");					
+				}else{
+					jedis.hset(pollKey, "answer"+i, poll.votes.toArray()[i-1].toString());
+				}
+			}
+			Integer tv = poll.totalVotes;
+			String totalVotesStr = tv.toString();
+			Integer dnv = poll.didNotVote;
+			String didNotVoteStr = dnv.toString();
+			if (totalVotesStr == null){
+				jedis.hset(pollKey, "totalVotes", "0");
+			}else{
+				jedis.hset(pollKey, "totalVotes", totalVotesStr);
+			}
+			jedis.hset(pollKey, "status", poll.status.toString());
+			jedis.hset(pollKey, "didNotVote", didNotVoteStr);
+			jedis.hset(pollKey, "publishToWeb", poll.publishToWeb.toString());
+			jedis.hset(pollKey, "webKey", poll.webKey);
+        }
+
         public void setStatus(String pollKey, Boolean status){
         	Jedis jedis = PollApplication.dbConnect();
         	jedis.hset(pollKey, "status", status.toString());
         }
         
         public void vote(String pollKey, Poll poll, Object[] answerIDs, Boolean webVote){
+        	// Add by iadd
+        	log.debug("iadd_poll_vote_"+pollKey);
+        	//---------------------------------
         	Jedis jedis = PollApplication.dbConnect();
         	for (int i = 0; i < answerIDs.length; i++){
 	    		// Extract  the index value stored at element i of answerIDs

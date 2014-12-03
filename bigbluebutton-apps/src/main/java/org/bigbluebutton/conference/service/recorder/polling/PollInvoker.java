@@ -63,6 +63,10 @@ public class PollInvoker {
    // The invoke method is called after already determining which poll is going to be used
    // (ie, the presenter has chosen this poll from a list and decided to use it, or it is being used immediately after creation)
    public Poll invoke(String pollKey){
+    // Added 2014-12-03 16:17 by iadd
+    // log pollkey
+    log.debug("iadd_poll_key_invoke_"+pollKey);
+    
 	   Jedis jedis = PollApplication.dbConnect();   
        if (jedis.exists(pollKey))
        {
@@ -117,8 +121,14 @@ public class PollInvoker {
    public ArrayList <String> titleList()
    { 
 	   Jedis jedis = PollApplication.dbConnect();
-       String roomName = Red5.getConnectionLocal().getScope().getName();
+       //String roomName = Red5.getConnectionLocal().getScope().getName();
 	   ArrayList <String> pollTitleList = new ArrayList <String>(); 
+
+      //Changed 2013-12-03 15:36 by iadd
+      //iadd_poll_roomName
+      // Get all commonName
+      String roomName = "iadd_poll_roomName";
+      //for (String s : jedis.keys(roomName+"*"))
        for (String s : jedis.keys(roomName+"*"))
        {
     	   pollTitleList.add(jedis.hget(s, "title"));

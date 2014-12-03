@@ -59,9 +59,19 @@ public class PollService {
 		application = a;
 	}
 	
+	// GetRoomId in pollKey
+	// pollKey = "d84a8b82330af852db9af76582276ae84a6ffc33-1417595282184-Tets";
+	// -----------meetingId----------------------------------------------Title;
+	public String getRoomInKey(String pollKey){
+		return pollKey.substring(0, pollKey.indexOf("-", 41))
+	}
+
 	public ArrayList getPoll(String pollKey)
 	{
+		// Added by iadd
 		log.debug("_iadd_getPoll_pollKey: "+pollKey);
+		String room = getRoomInKey(pollKey);
+		//---------------------------------------------------
 		Poll poll = application.getPoll(pollKey);
 		
 		ArrayList values = new ArrayList();
