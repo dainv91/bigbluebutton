@@ -63,7 +63,7 @@ public class PollService {
 	// pollKey = "d84a8b82330af852db9af76582276ae84a6ffc33-1417595282184-Tets";
 	// -----------meetingId----------------------------------------------Title;
 	public String getRoomInKey(String pollKey){
-		return pollKey.substring(0, pollKey.indexOf("-", 41))
+		return pollKey.substring(0, pollKey.indexOf("-", 41));
 	}
 
 	public ArrayList getPoll(String pollKey)
