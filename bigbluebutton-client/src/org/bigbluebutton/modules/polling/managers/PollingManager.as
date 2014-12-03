@@ -133,8 +133,8 @@ package org.bigbluebutton.modules.polling.managers
 			var obj:PollObject = new PollObject();
 			//-----Change here to change pollKey
 			obj.title = e.poll.title;
-			//obj.room = e.poll.room;
-			obj.room = "iadd_poll_roomName";
+			obj.room = e.poll.room;
+			//obj.room = "iadd_poll_roomName";
 			//-----------------------------------
 			obj.isMultiple = e.poll.isMultiple;
 			obj.question = e.poll.question;
