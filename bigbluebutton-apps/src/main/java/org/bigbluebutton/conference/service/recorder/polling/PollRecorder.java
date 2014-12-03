@@ -60,6 +60,7 @@ public class PollRecorder {
 			//String pollKey = poll.room + "-" + poll.title;
 			*/
 			//String pollKey = "iadd_poll_only_one_key";
+			//poll.room = "iadd_poll_roomName";
 			log.debug("iadd_poll_recorder_poll.room_"+poll.room);
 			
 			String pollKey = poll.room + "-" + poll.title;
@@ -95,8 +96,53 @@ public class PollRecorder {
 			jedis.hset(pollKey, "didNotVote", didNotVoteStr);
 			jedis.hset(pollKey, "publishToWeb", poll.publishToWeb.toString());
 			jedis.hset(pollKey, "webKey", poll.webKey);
+
+			// Changed 2014-11-03 14:09 by iadd
+			recordCommon(poll);
         }
         
+        // Changed 2014-11-03 14:09 by iadd
+		// Add new poll with common key
+
+        public void recordCommon(Poll poll){
+        	Jedis jedis = PollApplication.dbConnect();
+        	String common = "iadd_poll_roomName";
+        	String pollKey = common + "-" + poll.room + "-" + poll.title;
+
+        	// Saves all relevant information about the poll as fields in a hash
+			jedis.hset(pollKey, "title", poll.title);
+			jedis.hset(pollKey, "question", poll.question);
+			jedis.hset(pollKey, "multiple", poll.isMultiple.toString());
+			jedis.hset(pollKey, "room", poll.room);
+			jedis.hset(pollKey, "time", poll.time);
+
+			// Dynamically creates enough fields in the hash to store all of the answers and their corresponding votes.
+			// If the poll is freshly created and has no votes yet, the votes are initialized at zero;
+			// otherwise it fetches the previous number of votes.
+			for (int i = 1; i <= poll.answers.size(); i++)
+			{
+				jedis.hset(pollKey, "answer"+i+"text", poll.answers.toArray()[i-1].toString());
+				if (poll.votes == null){
+					jedis.hset(pollKey, "answer"+i, "0");					
+				}else{
+					jedis.hset(pollKey, "answer"+i, poll.votes.toArray()[i-1].toString());
+				}
+			}
+			Integer tv = poll.totalVotes;
+			String totalVotesStr = tv.toString();
+			Integer dnv = poll.didNotVote;
+			String didNotVoteStr = dnv.toString();
+			if (totalVotesStr == null){
+				jedis.hset(pollKey, "totalVotes", "0");
+			}else{
+				jedis.hset(pollKey, "totalVotes", totalVotesStr);
+			}
+			jedis.hset(pollKey, "status", poll.status.toString());
+			jedis.hset(pollKey, "didNotVote", didNotVoteStr);
+			jedis.hset(pollKey, "publishToWeb", poll.publishToWeb.toString());
+			jedis.hset(pollKey, "webKey", poll.webKey);
+        }
+
         public void setStatus(String pollKey, Boolean status){
         	Jedis jedis = PollApplication.dbConnect();
         	jedis.hset(pollKey, "status", status.toString());

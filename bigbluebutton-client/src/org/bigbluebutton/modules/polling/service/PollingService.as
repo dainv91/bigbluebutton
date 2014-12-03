@@ -357,10 +357,10 @@ package org.bigbluebutton.modules.polling.service
 				for (var i:int = 0; i < event.titleList.length; i++){
 					/* Changed by iadd 2014-11-18 17:54
 					* Using fewer pollKey for common purpose
-					*
+					* 
 					*/
-					var pollKey:String = roomID +"-"+ event.titleList[i];
-					//var pollKey:String = "iadd_poll_only_one_key";
+					//var pollKey:String = roomID +"-"+ event.titleList[i];
+					var pollKey:String = "*"+roomID + "-" + event.titleList[i];
 					//------------------------------------------------------
 					getPoll(pollKey, "initialize");
 				}
