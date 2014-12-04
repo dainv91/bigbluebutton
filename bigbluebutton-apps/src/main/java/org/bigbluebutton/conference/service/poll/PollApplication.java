@@ -160,7 +160,8 @@ public class PollApplication {
 				break;
 			}
 		}
-		if(isContain){
+		boolean notDuplicated = jedis.exists(pollKey);
+		if(isContain && !notDuplicated){
 			newKey = "iadd_poll_roomName" + "-" + title;
 
 			// Get Boolean values from string-based Redis hash
@@ -188,6 +189,8 @@ public class PollApplication {
 
     	   retrievedPoll.add(jedis.hget(newKey, "title"));
     	   //retrievedPoll.add(jedis.hget(newKey, "room"));
+    	   log.debug("iadd_hget_newKey_" + jedis.hget(newKey, "title"));
+    	   //--------------------------------------
     	   retrievedPoll.add(getRoomNameFromPollKey(pollKey));
     	   retrievedPoll.add(pMultiple);
     	   retrievedPoll.add(jedis.hget(newKey, "question"));
@@ -205,7 +208,7 @@ public class PollApplication {
 		   //poll.room = getRoomNameFromPollKey(pollKey);
 		   savePoll(poll);
 		}
-
+		//--------------------------------------------------------
 		PollInvoker pollInvoker = new PollInvoker();
 		return pollInvoker.invoke(pollKey);
 	}
@@ -214,7 +217,7 @@ public class PollApplication {
 	// If they voted for answers 3 and 5, the array could be [0] = 3, [1] = 5 or the other way around, shouldn't matter
 	public void vote(String pollKey, Object[] answerIDs, Boolean webVote){
 		log.debug("iadd_vote_pollKey_"+ pollKey);
-		
+
 		PollRecorder recorder = new PollRecorder();
 	    Poll poll = getPoll(pollKey);
 	    recorder.vote(pollKey, poll, answerIDs, webVote);
