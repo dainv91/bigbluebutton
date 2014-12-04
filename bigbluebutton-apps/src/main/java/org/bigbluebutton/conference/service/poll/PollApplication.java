@@ -146,8 +146,16 @@ public class PollApplication {
 		ArrayList retrievedPoll = new ArrayList();
 		ArrayList titleLists = titleList();
 
+		/*
 		for((String) t : titleLists) {
 			if(title.equals(t)){
+				isContain = true;
+				break;
+			}
+		}
+		*/
+		for(int i=0; i< titleLists.size(); i++){
+			if(titleLists.get(i).equals(title)){
 				isContain = true;
 				break;
 			}
