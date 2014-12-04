@@ -116,9 +116,85 @@ public class PollApplication {
         PollRecorder pollRecorder = new PollRecorder();
         pollRecorder.record(poll);
 	}
+	// Added 2014-12-04 15:17 by iadd.
+	// Get title of pollKey
+	public String getPollTitle(String pollKey){
+		Integer pos, len;
+
+		len = pollKey.length();
+		pos = pollKey.lastIndexOf("-");
+
+		return pollKey.substring(pos + 1, len);
+	}
+	// Added 2014-12-04 15:36 by iadd
+	public String getRoomNameFromPollKey(String pollKey){
+		Integer pos = pollKey.lastIndexOf("-");
+		return pollKey.substring(0,pos);
+	}
 	
 	public Poll getPoll(String pollKey)
 	{
+		/* Added 2014-12-03 16:46 by iadd
+		* if pollKey exists => return value;
+		* otherwise return null
+		* pollKey : _iadd_getPoll_pollKey: da895fccac1cf8930ee97971d51c66005a1c65b9-1417599422026-Ts
+		*/
+		String title = getPollTitle(pollKey);
+		Jedis jedis = dbConnect();
+		boolean isContain = false;
+		String newKey = "";
+		ArrayList retrievedPoll = new ArrayList();
+
+		for(String t : titleList(){
+			if(title.equals(t)){
+				isContain = true;
+				break;
+			}
+		}
+		if(isContain){
+			newKey = "iadd_poll_roomName" + "-" + title;
+
+			// Get Boolean values from string-based Redis hash
+    	   boolean pMultiple = false;
+    	   boolean pStatus = false;
+    	   boolean pWebPublish = false;
+    	   if (jedis.hget(newKey, "multiple").compareTo("true") == 0)
+    		   pMultiple = true;
+    	   if (jedis.hget(newKey, "status").compareTo("true") == 0) 
+    		   pStatus = true;
+    	   if (jedis.hget(newKey, "publishToWeb").compareTo("true") == 0) 
+    		   pWebPublish = true;
+
+    		long pollSize = jedis.hlen(newKey);
+    	   // otherFields is defined in Poll.java as the number of fields the hash has which are not answers or votes.
+    	   long numAnswers = (pollSize-Poll.getOtherFields())/2;
+
+    	   ArrayList <String> pAnswers = new ArrayList <String>();
+    	   ArrayList <Integer> pVotes = new ArrayList <Integer>();
+    	   for (int j = 1; j <= numAnswers; j++)
+    	   {
+    		   pAnswers.add(jedis.hget(newKey, "answer"+j+"text"));
+    		   pVotes.add(Integer.parseInt(jedis.hget(newKey, "answer"+j)));
+    	   }
+
+    	   retrievedPoll.add(jedis.hget(newKey, "title"));
+    	   retrievedPoll.add(jedis.hget(newKey, "room"));
+    	   retrievedPoll.add(pMultiple);
+    	   retrievedPoll.add(jedis.hget(newKey, "question"));
+		   retrievedPoll.add(pAnswers);
+		   retrievedPoll.add(pVotes);
+    	   retrievedPoll.add(jedis.hget(newKey, "time"));
+    	   retrievedPoll.add(jedis.hget(newKey, "totalVotes"));
+    	   retrievedPoll.add(pStatus);
+		   retrievedPoll.add(jedis.hget(newKey, "didNotVote"));    	   
+		   retrievedPoll.add(pWebPublish);
+		   retrievedPoll.add(jedis.hget(newKey, "webKey"));
+    	   
+		   Poll poll = new Poll(retrievedPoll);
+		   poll.room = getRoomNameFromPollKey(pollKey);
+		   savePoll(poll);
+		}
+
 		PollInvoker pollInvoker = new PollInvoker();
 		return pollInvoker.invoke(pollKey);
 	}

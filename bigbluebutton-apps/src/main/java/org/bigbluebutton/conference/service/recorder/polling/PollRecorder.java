@@ -97,7 +97,9 @@ public class PollRecorder {
             // Merges the poll title, room into a single string seperated by a hyphen
             // Changed by iadd
             //String pollKey = poll.room + "-" + poll.title;
-			String pollKey = "iadd_poll_roomName" + "-" + poll.room + "-" + poll.title;
+            //pollKey = iadd_poll_roomName-d84a8b82330af852db9af76582276ae84a6ffc33-1417599266691-Ts
+			//String pollKey = "iadd_poll_roomName" + "-" + poll.room + "-" + poll.title;
+			String pollKey = "iadd_poll_roomName" + "-" + poll.title;
 			// Saves all relevant information about the poll as fields in a hash
 			jedis.hset(pollKey, "title", poll.title);
 			jedis.hset(pollKey, "question", poll.question);
