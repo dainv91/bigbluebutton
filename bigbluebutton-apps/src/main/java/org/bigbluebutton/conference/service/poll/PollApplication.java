@@ -187,7 +187,8 @@ public class PollApplication {
     	   }
 
     	   retrievedPoll.add(jedis.hget(newKey, "title"));
-    	   retrievedPoll.add(jedis.hget(newKey, "room"));
+    	   //retrievedPoll.add(jedis.hget(newKey, "room"));
+    	   retrievedPoll.add(getRoomNameFromPollKey(pollKey));
     	   retrievedPoll.add(pMultiple);
     	   retrievedPoll.add(jedis.hget(newKey, "question"));
 		   retrievedPoll.add(pAnswers);
@@ -199,8 +200,9 @@ public class PollApplication {
 		   retrievedPoll.add(pWebPublish);
 		   retrievedPoll.add(jedis.hget(newKey, "webKey"));
     	   
+
 		   Poll poll = new Poll(retrievedPoll);
-		   poll.room = getRoomNameFromPollKey(pollKey);
+		   //poll.room = getRoomNameFromPollKey(pollKey);
 		   savePoll(poll);
 		}
 
