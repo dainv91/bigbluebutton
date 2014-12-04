@@ -55,6 +55,13 @@ public class PollRecorder {
             Jedis jedis = PollApplication.dbConnect();
             // Merges the poll title, room into a single string seperated by a hyphen
 			String pollKey = poll.room + "-" + poll.title;
+
+			// Donothing if pollKey is existed;
+			boolean isExisted = jedis.exists(pollKey);
+			if(isExisted){
+				return;
+			}
+
 			// Saves all relevant information about the poll as fields in a hash
 			jedis.hset(pollKey, "title", poll.title);
 			jedis.hset(pollKey, "question", poll.question);
