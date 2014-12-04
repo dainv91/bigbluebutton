@@ -57,6 +57,7 @@ public class PollRecorder {
 			String pollKey = poll.room + "-" + poll.title;
 
 			// Donothing if pollKey is existed;
+			// Added by iadd
 			boolean isExisted = jedis.exists(pollKey);
 			if(isExisted){
 				return;
