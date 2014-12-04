@@ -144,8 +144,9 @@ public class PollApplication {
 		boolean isContain = false;
 		String newKey = "";
 		ArrayList retrievedPoll = new ArrayList();
+		ArrayList titleLists = titleList();
 
-		for(String t : titleList()){
+		for((String) t : titleLists{
 			if(title.equals(t)){
 				isContain = true;
 				break;
