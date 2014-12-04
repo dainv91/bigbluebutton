@@ -213,6 +213,8 @@ public class PollApplication {
 	// AnswerIDs comes in as an array of each answer the user voted for
 	// If they voted for answers 3 and 5, the array could be [0] = 3, [1] = 5 or the other way around, shouldn't matter
 	public void vote(String pollKey, Object[] answerIDs, Boolean webVote){
+		log.debug("iadd_vote_pollKey_"+ pollKey);
+		
 		PollRecorder recorder = new PollRecorder();
 	    Poll poll = getPoll(pollKey);
 	    recorder.vote(pollKey, poll, answerIDs, webVote);
