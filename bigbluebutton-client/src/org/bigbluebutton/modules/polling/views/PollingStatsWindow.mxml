@@ -103,7 +103,7 @@
 		[Bindable] private var answerCollection:ArrayCollection = new ArrayCollection();
 		private var keyCombos:Object;
 		
-		private function init():void{			
+		private function init():void{
 			pollOptions = new PollOptions();
 			baseIndex = pollOptions.baseTabIndex; 
 			answerCollection = trackingPoll.generateStats();
@@ -120,6 +120,13 @@
 				dispatchEvent(generate);
 			}
 			notified = false;
+
+			/* Added 2014-12-05 16:04 by iadd			
+			* Auto refresh polling result
+			*/
+			refreshTimer.addEventListener(TimerEvent.TIMER, autoRefresh);
+			refreshTimer.start();
+			//---------------------------------------------
 		}
 
 		private function autoRefresh(event:TimerEvent):void{
