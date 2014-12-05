@@ -58,10 +58,13 @@ public class PollRecorder {
 
 			// Donothing if pollKey is existed;
 			// Added by iadd
+			/*
 			boolean isExisted = jedis.exists(pollKey);
+			
 			if(isExisted){
 				return;
 			}
+			*/
 
 			// Saves all relevant information about the poll as fields in a hash
 			jedis.hset(pollKey, "title", poll.title);
@@ -102,6 +105,11 @@ public class PollRecorder {
         // Add polling for common user
         public void recordCommon(Poll poll){
         	Jedis jedis = PollApplication.dbConnect();
+        	boolean isExisted = jedis.exists(pollKey);
+			
+			if(isExisted){
+				return;
+			}
             // Merges the poll title, room into a single string seperated by a hyphen
             // Changed by iadd
             //String pollKey = poll.room + "-" + poll.title;
