@@ -121,9 +121,9 @@
 				}
 				else{
 					// Changed 2014-12-08 18:16 by iadd
-					pevent = new PollGetTitlesEvent(PollGetTitlesEvent.REMOTE_CHECK);
+					//pevent = new PollGetTitlesEvent(PollGetTitlesEvent.REMOTE_CHECK);
 					//----------------------------------------------------
-					//pevent = new PollGetTitlesEvent(PollGetTitlesEvent.INIT);
+					pevent = new PollGetTitlesEvent(PollGetTitlesEvent.INIT);
 				}
 				
 				try{
