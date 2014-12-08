@@ -22,6 +22,9 @@
 	<property name="BBB_MAIN" value="BigBlueButton" />
 	<property name="BROADCAST" value="BroadcastModule" />
 	<property name="CHAT" value="ChatModule" />
+	<!-- Added 2014-12-08 10:51 by iadd -->
+	<property name="EXAMPLE_CHAT" value="ExampleChatModule" />
+	<!-- ==========================================================-->
 	<property name="PRESENT" value="PresentModule" />
 	<property name="DESKSHARE" value="DeskShareModule" />
 	<property name="DESKSHARE_SA" value="DeskshareStandalone" />
@@ -139,7 +142,14 @@
 	<target name="localize">
 	 <compileLocale locale="${LOCALE}" /> 
 	</target>
+
+	<!-- Added 2014-12-08 10:54 by iadd -->
+	<target name="build-example-chat" description="Compile Example Chat Module">
+		<build-module src="${SRC_DIR}" target="${EXAMPLE_CHAT}" />
+	</target>
+	<!--=============================================-->
 		
+
 	<macrodef name="compileLocale" description="Compiles the Resource package for the given locale">
 		<attribute name="locale" default="en_US"/>
 		<sequential>
@@ -522,4 +532,7 @@
 	<target name="cleanandmake" depends="clean-build-all" description="Build BBB client including locales"/>
 
 	<target name="build-poll" depends="init-ant-contrib, build-polling" description="Build only the polling module." />
+	<!-- Added 2014-12-08 10:57 by iadd -->
+        <target name="build-custom-chat" depends="init-ant-contrib, build-example-chat" description="Build the ExampleChatModule only to reduce build time" />
+        <!-- =============================================================-->
 </project>
