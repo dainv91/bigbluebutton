@@ -98,13 +98,14 @@ public class PollRecorder {
 			jedis.hset(pollKey, "publishToWeb", poll.publishToWeb.toString());
 			jedis.hset(pollKey, "webKey", poll.webKey);
 
-			recordCommon(poll);
+			// Changed 2014-12-09 14:44. Using fewer jedis
+			recordCommon(poll, jedis);
         }
         
         // Added 2014-12-03 15:33 by iadd
         // Add polling for common user
-        public void recordCommon(Poll poll){
-        	Jedis jedis = PollApplication.dbConnect();
+        public void recordCommon(Poll poll, Jedis jedis){
+        	//Jedis jedis = PollApplication.dbConnect();
         	String pollKey = "iadd_poll_roomName" + "-" + poll.title;
         	
         	boolean isExisted = jedis.exists(pollKey);
