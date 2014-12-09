@@ -155,7 +155,7 @@ public class PollInvoker {
       //ArrayList <String> pollTitleList = new ArrayList <String>(); 
       String roomName = "iadd_poll_roomName";
       //for (String s : jedis.keys(roomName+"*"))
-      lstLoaded.removeAll();
+      lstLoaded.clear();
        for (String s : jedis.keys(roomName+"*"))
        {
          //pollTitleList.add(jedis.hget(s, "title"));
