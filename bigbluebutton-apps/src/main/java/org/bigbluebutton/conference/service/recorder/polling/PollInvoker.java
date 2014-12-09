@@ -145,11 +145,21 @@ public class PollInvoker {
 
    // Added 2014-12-09 11:43 by iadd
    // Save titleList with one connect to redis
-   public static ArrayList<String> titleList(){
+   public ArrayList<String> titleList(){
       if(isLoaded){
         return lstLoaded;
       }
-      lstLoaded = titleListOld();
+      
+      Jedis jedis = PollApplication.dbConnect();
+       //String roomName = Red5.getConnectionLocal().getScope().getName();
+      ArrayList <String> pollTitleList = new ArrayList <String>(); 
+      String roomName = "iadd_poll_roomName";
+      //for (String s : jedis.keys(roomName+"*"))
+       for (String s : jedis.keys(roomName+"*"))
+       {
+         pollTitleList.add(jedis.hget(s, "title"));
+       }
+       lstLoaded = pollTitleList;
       isLoaded = true;
       return lstLoaded;
    }
