@@ -135,7 +135,16 @@
 			}
 						
 			private function renderMenu():void{
-				myMenuData.removeAll();
+				//myMenuData.removeAll();
+				/* Changed 2014-12-09 10:06 by iadd
+				* Create new Array if null
+				*/
+				if(myMenuData ==null){
+					myMenuData = new ArrayCollection();
+				}else{
+					myMenuData.removeAll();
+				}
+
 				myMenuData.addItem(new ValueObject("create", ResourceUtil.getInstance().getString('bbb.polling.createPoll')));
 				for (var i:int = 0; i < pollList.length; i++){
 					if (pollList[i] != null){
