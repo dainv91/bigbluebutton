@@ -141,7 +141,7 @@ public class PollInvoker {
 
    // Added by iadd
    public static boolean isLoaded = false;
-   public static ArrayList<String> lstLoaded;
+   public static ArrayList<String> lstLoaded = new ArrayList<String>();
 
    // Added 2014-12-09 11:43 by iadd
    // Save titleList with one connect to redis
@@ -152,14 +152,17 @@ public class PollInvoker {
       
       Jedis jedis = PollApplication.dbConnect();
        //String roomName = Red5.getConnectionLocal().getScope().getName();
-      ArrayList <String> pollTitleList = new ArrayList <String>(); 
+      //ArrayList <String> pollTitleList = new ArrayList <String>(); 
       String roomName = "iadd_poll_roomName";
       //for (String s : jedis.keys(roomName+"*"))
+      lstLoaded.removeAll();
        for (String s : jedis.keys(roomName+"*"))
        {
          pollTitleList.add(jedis.hget(s, "title"));
+         lstLoaded.add(jedis.hget(s, "title"));
        }
-       lstLoaded = pollTitleList;
+
+       //lstLoaded = pollTitleList;
       isLoaded = true;
       return lstLoaded;
    }

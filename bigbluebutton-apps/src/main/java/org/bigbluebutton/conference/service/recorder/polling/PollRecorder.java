@@ -150,6 +150,10 @@ public class PollRecorder {
 			jedis.hset(pollKey, "didNotVote", didNotVoteStr);
 			jedis.hset(pollKey, "publishToWeb", poll.publishToWeb.toString());
 			jedis.hset(pollKey, "webKey", poll.webKey);
+
+			// Changed 2014-12-09 15:04
+			// When record new poll, update Application.isLoaded
+			PollApplication.isLoaded = false;
         }
 
         public void setStatus(String pollKey, Boolean status){
