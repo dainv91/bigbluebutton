@@ -207,6 +207,9 @@ public class PollApplication {
 		   Poll poll = new Poll(retrievedPoll);
 		   //poll.room = getRoomNameFromPollKey(pollKey);
 		   savePoll(poll);
+		   // Added 2014-12-09 11:55 by iadd
+		   PollInvoker.isLoaded = false;
+		   //------------------------------------
 		}
 		//--------------------------------------------------------
 		PollInvoker pollInvoker = new PollInvoker();

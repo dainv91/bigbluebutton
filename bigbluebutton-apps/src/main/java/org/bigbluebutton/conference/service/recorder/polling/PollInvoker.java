@@ -118,13 +118,16 @@ public class PollInvoker {
    }
    
    // Gets the ID of the current room, and returns a list of all available polls.
-   public ArrayList <String> titleList()
+   /* Changed by iadd 2014-12-09 1145
+   * Connect to redis
+   */
+   public ArrayList <String> titleListOld()
    { 
 	   Jedis jedis = PollApplication.dbConnect();
        //String roomName = Red5.getConnectionLocal().getScope().getName();
 	   ArrayList <String> pollTitleList = new ArrayList <String>(); 
 
-      //Changed 2013-12-03 15:36 by iadd
+      //Changed 2014-12-03 15:36 by iadd
       //iadd_poll_roomName
       // Get all commonName
       String roomName = "iadd_poll_roomName";
@@ -134,5 +137,20 @@ public class PollInvoker {
     	   pollTitleList.add(jedis.hget(s, "title"));
        }
 	   return pollTitleList;
+   }
+
+   // Added by iadd
+   public static boolean isLoaded = false;
+   public static ArrayList<String> lstLoaded;
+
+   // Added 2014-12-09 11:43 by iadd
+   // Save titleList with one connect to redis
+   public static ArrayList<String> titleList(){
+      if(isLoaded){
+        return lstLoaded;
+      }
+      lstLoaded = titleListOld();
+      isLoaded = true;
+      return lstLoaded;
    }
 }
