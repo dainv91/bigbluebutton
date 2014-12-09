@@ -158,7 +158,7 @@ public class PollInvoker {
       lstLoaded.removeAll();
        for (String s : jedis.keys(roomName+"*"))
        {
-         pollTitleList.add(jedis.hget(s, "title"));
+         //pollTitleList.add(jedis.hget(s, "title"));
          lstLoaded.add(jedis.hget(s, "title"));
        }
 

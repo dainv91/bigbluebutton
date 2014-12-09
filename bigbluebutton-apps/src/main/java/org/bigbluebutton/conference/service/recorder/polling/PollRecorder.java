@@ -153,7 +153,7 @@ public class PollRecorder {
 
 			// Changed 2014-12-09 15:04
 			// When record new poll, update Application.isLoaded
-			PollApplication.isLoaded = false;
+			PollInvoker.isLoaded = false;
         }
 
         public void setStatus(String pollKey, Boolean status){
