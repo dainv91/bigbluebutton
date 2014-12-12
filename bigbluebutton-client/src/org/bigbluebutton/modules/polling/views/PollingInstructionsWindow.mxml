@@ -228,7 +228,8 @@ Notes.mxml is the main view of the SharedNotes application
 		
 		// DATA VALIDATION
 		//##################################################################################
-		private function validateAndSubmit():void {
+		// Changed 2014-12-12 16:35 by iadd. Change private to public
+		public function validateAndSubmit():void {
 			var valid:Boolean = true;
 			// Gathering Error Messages
 			titleErrMsg.text = titleError();
@@ -308,7 +309,14 @@ Notes.mxml is the main view of the SharedNotes application
 			var errMsg:String = "VALID";
 			var answersArray:Array;
 			var valid:Boolean=true;
-			answersArray = pollAnswers.text.split("\r"); 
+			answersArray = pollAnswers.text.split("\r");
+
+			// Changed 2014-12-12 16:37 by iadd
+			// Check if length <=1
+			if(answersArray.length <= 1){
+				answersArray = pollAnswers.text.split("\n");
+			}
+			//---------------------------------------------
 // splitting by '*' and new line, thus user can type '*' anywhere except the newline
 			//answersArray[0] = answersArray[0].split('*').join(''); 
 // As after split '*' is not displayed we need to take off from first element which is not splitted

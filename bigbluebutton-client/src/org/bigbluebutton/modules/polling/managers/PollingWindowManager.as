@@ -104,7 +104,10 @@ package org.bigbluebutton.modules.polling.managers
 				instructionsWindow.editing = true;
 			}		
 			openWindow(instructionsWindow);
-			
+			// Added 2014-12-12 16:36 by iadd. Skip edit window
+			instructionsWindow.validateAndSubmit();
+			//------------------------------------------------
+
 			instructionsFocusTimer.addEventListener(TimerEvent.TIMER, moveInstructionsFocus);
 			instructionsFocusTimer.start();
 		}
