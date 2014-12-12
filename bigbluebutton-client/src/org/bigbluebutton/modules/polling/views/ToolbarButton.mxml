@@ -184,22 +184,29 @@
 				listInitialize(calledFromShortcut);
 			}
 			
-      private function menuClick(event:MenuEvent):void {            	
+      		private function menuClick(event:MenuEvent):void {            	
 				if(event.index == 0){
             	  	openPollingInstructions();
             	}else{
             		var poll:PollObject = myMenuData.getItemAt(event.index).poll;
-            		if (poll.status){
-            			// Poll has not been used yet, open instructions window
-            			var openPollEvent:OpenSavedPollEvent = new OpenSavedPollEvent(OpenSavedPollEvent.OPEN);
-            			openPollEvent.poll = poll;
-            			dispatchEvent(openPollEvent);
-            		}else{
-            			// Poll has been closed, show results
-            			var reviewEvent:ReviewResultsEvent = new ReviewResultsEvent(ReviewResultsEvent.REVIEW);
-            			reviewEvent.poll = poll;
-            			dispatchEvent(reviewEvent);
-            		}
+
+            		/** Changed 2014-12-12 16:43 by iadd
+            		* Remove ReviewResult
+	            		if (poll.status){
+	            			// Poll has not been used yet, open instructions window
+	            			var openPollEvent:OpenSavedPollEvent = new OpenSavedPollEvent(OpenSavedPollEvent.OPEN);
+	            			openPollEvent.poll = poll;
+	            			dispatchEvent(openPollEvent);
+	            		}else{
+	            			// Poll has been closed, show results
+	            			var reviewEvent:ReviewResultsEvent = new ReviewResultsEvent(ReviewResultsEvent.REVIEW);
+	            			reviewEvent.poll = poll;
+	            			dispatchEvent(reviewEvent);
+	            		}
+            		*/
+            		var openPollEvent:OpenSavedPollEvent = new OpenSavedPollEvent(OpenSavedPollEvent.OPEN);
+            		openPollEvent.poll = poll;
+            		dispatchEvent(openPollEvent);
             	}
 				stage.dispatchEvent(new MenuEvent(MenuEvent.MENU_HIDE));
         	}
