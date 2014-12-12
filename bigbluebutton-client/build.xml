@@ -143,11 +143,11 @@
 	 <compileLocale locale="${LOCALE}" /> 
 	</target>
 
-	<!-- Added 2014-12-08 10:54 by iadd -->
+	<!-- Added 2014-12-08 10:54 by iadd
 	<target name="build-example-chat" description="Compile Example Chat Module">
 		<build-module src="${SRC_DIR}" target="${EXAMPLE_CHAT}" />
 	</target>
-	<!--=============================================-->
+	=============================================-->
 		
 
 	<macrodef name="compileLocale" description="Compiles the Resource package for the given locale">
@@ -532,7 +532,7 @@
 	<target name="cleanandmake" depends="clean-build-all" description="Build BBB client including locales"/>
 
 	<target name="build-poll" depends="init-ant-contrib, build-polling" description="Build only the polling module." />
-	<!-- Added 2014-12-08 10:57 by iadd -->
+	<!-- Added 2014-12-08 10:57 by iadd
         <target name="build-custom-chat" depends="init-ant-contrib, build-example-chat" description="Build the ExampleChatModule only to reduce build time" />
-        <!-- =============================================================-->
+        =============================================================-->
 </project>
