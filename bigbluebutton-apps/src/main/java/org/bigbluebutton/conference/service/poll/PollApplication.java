@@ -66,6 +66,7 @@ public class PollApplication {
 			
 	public void destroyPolls(String name){
 		// Destroy polls that were created in the room
+		log.debug("iadd_debug_destroyPoll_name_" + name);
 		Jedis jedis = dbConnect();
 		ArrayList polls = titleList();
 		for (int i = 0; i < polls.size(); i++){
