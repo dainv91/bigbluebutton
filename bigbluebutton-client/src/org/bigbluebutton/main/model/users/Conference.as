@@ -26,6 +26,7 @@ package org.bigbluebutton.main.model.users {
 	import org.bigbluebutton.core.model.Config;
 	import org.bigbluebutton.core.vo.CameraSettingsVO;
 	import org.bigbluebutton.core.vo.LockSettingsVO;
+	import mx.controls.Alert;
 	
 	public class Conference {		
     public var meetingName:String;
@@ -416,7 +417,10 @@ package org.bigbluebutton.main.model.users {
 			if(config!=null) {
 				lockConfig = config.lock;
 			}
-			
+			// Added 2014-12-29 11:40 by iadd
+			var lock:Boolean = lockConfig.@allowModeratorLocking.toUpperCase();
+			//Alert.show(lock);
+			//--------------------------------
 			try{
 				allowModeratorLocking = (lockConfig.@allowModeratorLocking.toUpperCase() == "TRUE");
 			}catch(e:Error) {
