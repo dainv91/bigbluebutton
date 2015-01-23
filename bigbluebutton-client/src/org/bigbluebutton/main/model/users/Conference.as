@@ -419,7 +419,7 @@ package org.bigbluebutton.main.model.users {
 			}
 			// Added 2014-12-29 11:40 by iadd
 			var lock:Boolean = lockConfig.@disableMicForLockedUsers;
-			//Alert.show(lock.toString());
+			//Alert.show(lock.toString();
 			//--------------------------------
 			try{
 				allowModeratorLocking = (lockConfig.@allowModeratorLocking.toUpperCase() == "TRUE");
