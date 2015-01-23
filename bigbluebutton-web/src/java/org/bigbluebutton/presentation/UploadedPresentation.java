@@ -30,11 +30,18 @@ public final class UploadedPresentation {
 	private int numberOfPages = 0;
 	private boolean lastStepSuccessful = false;
 	
+	/*public UploadedPresentation(String conference, String room, String name) {
+		this.conference = conference;
+		this.room = room;
+		this.name = name;
+	}*/
+	// giangdv
 	public UploadedPresentation(String conference, String room, String name) {
 		this.conference = conference;
 		this.room = room;
 		this.name = name;
 	}
+	
 
 	public File getUploadedFile() {
 		return uploadedFile;

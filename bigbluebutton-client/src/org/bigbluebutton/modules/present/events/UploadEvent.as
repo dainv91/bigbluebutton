@@ -46,6 +46,9 @@ package org.bigbluebutton.modules.present.events
     	public static const PAGE_COUNT_EXCEEDED:String = "PAGE_COUNT_EXCEEDED";
     			
 		public var presentationName:String;
+		// Giangdv 19-12-2014
+		public var exMeetingId:String;
+		// end
 		public var data:Object;
 		public var completedSlides:Number;
 		public var totalSlides:Number;

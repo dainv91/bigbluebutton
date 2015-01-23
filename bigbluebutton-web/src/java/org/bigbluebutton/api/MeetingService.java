@@ -342,8 +342,12 @@ public class MeetingService {
 		}
 
 		public void saveLog(final User user, final String action, final Meeting meeting){
+			IntegrationConfig config = new IntegrationConfig();
+
 			//TODO: change url to lms server
 			String url = "http://elearning.neu.topica.vn/login/vcr/lms_vcr_integration.php?";
+			url = config.readProperty("server");
+
 			String externalUserId = user.getExternalUserId();
 			String internalUserId = user.getInternalUserId();
 			String userName = user.getFullname();
@@ -370,7 +374,8 @@ public class MeetingService {
 			Curl.POST(url, params, new Curl.Listener() {
 				@Override
 				public void onResponse(String response) {
-					log.debug("iaddDebug: LogInOut:" + response);
+					//log.debug("iaddDebug: LogInOut:" + response);
+					// Do nothing
 				}
 			});
 		}

@@ -56,6 +56,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       import org.bigbluebutton.modules.present.events.RemovePresentationEvent;
       import org.bigbluebutton.modules.present.events.UploadEvent;
       import org.bigbluebutton.util.i18n.ResourceUtil;
+	  import mx.controls.Alert;
 
             	
       [Bindable] public var presentationNamesAC:ArrayCollection;
@@ -111,6 +112,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       }
 
       private function selectFile():void{
+		//Alert.show('my first alert');
         fileToUpload.addEventListener(Event.SELECT, onSelectFile);	
         fileToUpload.browse([
           new FileFilter(ResourceUtil.getInstance().getString('bbb.presentation.uploadwindow.presentationfile'), "*.pdf;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.txt;*.rtf;*.odt;*.ods;*.odp;*.odg;*.odc;*.odi;*.jpg;*.png"), 
@@ -151,6 +153,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
           var uploadEvent:UploadEvent = new UploadEvent(UploadEvent.START_UPLOAD);
           uploadEvent.presentationName = presentationName;
           uploadEvent.fileToUpload = fileToUpload;
+		  // Giangdv 19-12-2014
+		  uploadEvent.exMeetingId = "iadd_temp";
+		  // end
           globalDispatch.dispatchEvent(uploadEvent);
 
           progBarLbl.visible = true;

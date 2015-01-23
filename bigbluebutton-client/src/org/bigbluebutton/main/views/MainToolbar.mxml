@@ -368,10 +368,6 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 	<mx:Button label="" id="btnLogout" styleName="logoutButtonStyle"
                  toolTip="{ResourceUtil.getInstance().getString('bbb.mainToolbar.logoutBtn.toolTip')}" right="10" click="confirmLogout()" height="22"
                  tabIndex="{baseIndex+numButtons+14}" />
-	<mx:Button label="End meeting" id="btnEndMeeting" toolTip="End :3"
-		click="onEndMeetingClick()"
-		tabIndex="{baseIndex+numButtons+15}" />
-
 	<mx:Script>
 		<![CDATA[
 			import mx.managers.PopUpManager;

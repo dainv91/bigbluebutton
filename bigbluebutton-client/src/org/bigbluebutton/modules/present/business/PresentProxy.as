@@ -74,11 +74,19 @@ package org.bigbluebutton.modules.present.business
 		 * Start uploading the selected file 
 		 * @param e
 		 * 
-		 */		
-		public function startUpload(e:UploadEvent):void{
+		 * backup Giangdv 19-12-214
+		 public function startUpload(e:UploadEvent):void{
+			LogUtil.debug(host + "/bigbluebutton/presentation/upload");
 			if (uploadService == null) uploadService = new FileUploadService(host + "/bigbluebutton/presentation/upload", conference, room);
 			uploadService.upload(e.presentationName, e.fileToUpload);
 		}
+		 */		
+		public function startUpload(e:UploadEvent):void{
+			LogUtil.debug(host + "/bigbluebutton/presentation/upload   Giangdv");
+			if (uploadService == null) uploadService = new FileUploadService(host + "/bigbluebutton/presentation/upload", conference, room);
+			uploadService.upload(e.presentationName, e.fileToUpload);
+		}
+		
 		
 		/**
 		 * To to the specified slide 
@@ -112,9 +120,24 @@ package org.bigbluebutton.modules.present.business
 		/**
 		 * Loads a presentation from the server. creates a new PresentationService class 
 		 * 
+		 * Backup - Giangdv - 19-12-2014
+		 public function loadPresentation(e:UploadEvent) : void
+		{
+			var presentationName:String = e.presentationName;
+			LogUtil.debug("PresentProxy::loadPresentation: presentationName=" + presentationName);
+			var fullUri : String = host + "/bigbluebutton/presentation/" + conference + "/" + room + "/" + presentationName+"/slides";	
+			var slideUri:String = host + "/bigbluebutton/presentation/" + conference + "/" + room + "/" + presentationName;
+			
+			LogUtil.debug("PresentationApplication::loadPresentation()... " + fullUri);
+			var service:PresentationService = new PresentationService();
+			service.load(fullUri, slides, slideUri);
+			LogUtil.debug('number of slides=' + slides.size());
+		}
 		 */		
 		public function loadPresentation(e:UploadEvent) : void
 		{
+			// conference là internalMeetingId
+			// room là internalMeetingId
 			var presentationName:String = e.presentationName;
 			LogUtil.debug("PresentProxy::loadPresentation: presentationName=" + presentationName);
 			var fullUri : String = host + "/bigbluebutton/presentation/" + conference + "/" + room + "/" + presentationName+"/slides";	
