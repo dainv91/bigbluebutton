@@ -133,10 +133,14 @@
 			
 			
 			private function updateNumberofUsers(numUsers:int):void {
+				/*
 				if (numUsers > 8)
 					this.title = ResourceUtil.getInstance().getString('bbb.users.title', [":", numUsers]);
 				else 
 					this.title = ResourceUtil.getInstance().getString('bbb.users.title', ["", ""]);
+				*/
+				// Added 2015-01-23 11:23 by iadd: Always show number of users
+				this.title = ResourceUtil.getInstance().getString('bbb.users.title', [":", numUsers]);
 			}
 			
 			private function localeChanged(e:Event):void {
