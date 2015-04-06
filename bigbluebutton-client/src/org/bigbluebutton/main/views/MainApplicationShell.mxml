@@ -164,7 +164,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 			* Added 2015-04-06 14:10 by iadd
 			* Call savelocksetting when loaded
 			*/
-			private function autoLocking(){
+			private function autoLocking():void{
 				var event:LockControlEvent = new LockControlEvent(LockControlEvent.SAVE_LOCK_SETTINGS);
 				
 				var lockSettings:LockSettingsVO = new LockSettingsVO(false, 
