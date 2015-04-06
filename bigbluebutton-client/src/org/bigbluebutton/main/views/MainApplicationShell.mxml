@@ -89,6 +89,8 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 			import org.bigbluebutton.main.model.users.events.ConnectionFailedEvent;
 			import org.bigbluebutton.util.i18n.ResourceUtil;
 			import org.bigbluebutton.util.logging.Logger;
+
+			import org.bigbluebutton.core.vo.LockSettingsVO;
 	
 			private var globalDispatcher:Dispatcher;			
 			private var dispState:String; //full-screen?
@@ -156,7 +158,26 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 				systemManager.addEventListener(Event.RESIZE, updateCopyrightLabelDimensions);
 				copyrightLabel2.addEventListener(FlexEvent.UPDATE_COMPLETE, updateCopyrightLabelDimensions);
 				updateCopyrightLabelDimensions();
+				autoLocking();
 			}
+			/**
+			* Added 2015-04-06 14:10 by iadd
+			* Call savelocksetting when loaded
+			*/
+			private function autoLocking(){
+				var event:LockControlEvent = new LockControlEvent(LockControlEvent.SAVE_LOCK_SETTINGS);
+				
+				var lockSettings:LockSettingsVO = new LockSettingsVO(false, 
+					true,
+					true, 
+					true,
+					true);
+
+				event.payload = lockSettings.toMap();
+
+				dispatchEvent(event);
+			}
+			//=========================END iadd==================
 
 			private function updateCopyrightLabelDimensions(e:Event = null):void {
 				var screenRect:Rectangle = systemManager.screen;
